@@ -1,13 +1,30 @@
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
-     integrity="sha256-pLJdzMvoIQPf/7yAtvzQqcvRxcLzCR3hpVCvRKJ3uLk="
-     crossorigin=""/>
-   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script></head>
-
+    <title>Leaflet Map and Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        #map { height: 400px; }
+        #dashboard { width: 300px; }
+    </style>
+</head>
 <body>
-<div id="map" style="height: 400px;"></div>     
+    <div id="map"></div>
+    <div id="dashboard">
+        <h2>Dashboard</h2>
+        <div id="chart"></div> 
+    </div>
+
+    <script>
+        // ... (Map setup code from previous response)
+
+        // Dashboard interaction example
+        map.on('click', function(e) {
+            // Update dashboard based on click location
+            console.log("Clicked at: ", e.latlng); 
+            // ... (Update chart or other dashboard elements)
+        });
+    </script>
 </body>
 </html>
