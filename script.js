@@ -6,8 +6,8 @@
        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
    }).addTo(map);
 
-   // Load your GeoJSON data (replace 'your_data.geojson' with the actual filename)
-   fetch('your_data.geojson')
+   // Load your GeoJSON data (replace 'custom.geo (1).json' with the actual filename)
+   fetch('custom.geo (1).json')
        .then(response => response.json())
        .then(data => {
            // Add the GeoJSON layer to the map
