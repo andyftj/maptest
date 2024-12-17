@@ -10,7 +10,7 @@ var layer2 = L.layerGroup();
 var layer3 = L.layerGroup();
 
 // Load your GeoJSON data into the layers
-fetch('map.geojson')
+fetch('map.json')
     .then(response => response.json())
     .then(data => {
         L.geoJSON(data).addTo(layer1);
