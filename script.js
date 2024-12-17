@@ -7,7 +7,7 @@
     }).addTo(map);
 
 // Assuming your GeoJSON file is named 'my_data.geojson'
-    fetch('my_data.geojson')
+    fetch('my_data.json')
         .then(response => response.json())
         .then(data => {
             L.geoJSON(data).addTo(map); 
