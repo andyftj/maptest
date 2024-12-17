@@ -1,44 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Leaflet Map and Dashboard</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <style>
-        #map { height: 400px; }
-        #dashboard { width: 300px; }
-    </style>
-</head>
-<body>
-    <div id="map"></div>
-    <div id="dashboard">
-        <h2>Dashboard</h2>
-        <div id="chart"></div> 
-    </div>
-
-    <script>
-        // Create the map
-   var map = L.map('map').setView([51.505, -0.09], 13); 
-
-   // Add a basemap tile layer
-   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-   }).addTo(map);
-
-   // Load your GeoJSON data (replace 'custom.geo (1).json' with the actual filename)
-   fetch('custom.geo (1).json')
-       .then(response => response.json())
-       .then(data => {
-           // Add the GeoJSON layer to the map
-           L.geoJSON(data).addTo(map);
-       });
-
-        // Dashboard interaction example
-        map.on('click', function(e) {
-            // Update dashboard based on click location
-            console.log("Clicked at: ", e.latlng); 
-            // ... (Update chart or other dashboard elements)
-        });
-    </script>
-</body>
-</html>
+    <html>
+    <head>
+        <title>My Leaflet Map</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <style>
+            #map { height: 400px; } 
+        </style>
+    </head>
+    <body>
+        <div id="map"></div> 
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="script.js"></script> 
+    </body>
+    </html>
