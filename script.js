@@ -1,60 +1,44 @@
-var map = L.map('map').setView([ 43.6, 79.4, 13 );
+var map = L.map('map').setView([ 43.6, 79.4, 13 )
+// Add the base map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Create layer objects (importantly, don't add them to the map yet)
-let roadsLayer = null
-fetch('map.geojson')
+// Create empty layer groups for each of your layers
+var layer1 = L.layerGroup();
+var layer2 = L.layerGroup();
+var layer3 = L.layerGroup();
+
+// Load your GeoJSON data into the layers
+fetch('layer1.geojson')
     .then(response => response.json())
     .then(data => {
-        roadsLayer = L.geoJSON(data)
-    })
+        L.geoJSON(data).addTo(layer1);
+    });
 
-let buildingsLayer = null
-fetch('map (1).geojson')
+fetch('layer2.geojson')
     .then(response => response.json())
     .then(data => {
-        buildingsLayer = L.geoJSON(data)
+        L.geoJSON(data).addTo(layer2);
     });
-let parksLayer = null
 
-fetch('map (2).geojson')
-        .then(response => response.json())
+fetch('layer3.geojson')
+    .then(response => response.json())
     .then(data => {
-        parksLayer = L.geoJSON(data)
+        L.geoJSON(data).addTo(layer3);
     });
 
-// Add a simple toggle to the index.html to demonstrate
-    const container = document.getElementById('map').insertAdjacentHTML('afterend','<input id="toggleRoads" type="checkbox" name="roads"> <label for ="toggleRoads">Show Roads</label> <br ><input id="toggleBuildings" type="checkbox" name="buildings"> <label for ="toggleBuildings">Show Buildings</label> <br ><input id="toggleParks" type="checkbox" name="parks"> <label for ="toggleParks">Show Parks</label>')
-    
-    const toggleRoads = document.getElementById('toggleRoads')
-    const toggleBuildings = document.getElementById('toggleBuildings')
-    const toggleParks = document.getElementById('toggleParks')
+// Add all layers to the map
+layer1.addTo(map);
+layer2.addTo(map);
+layer3.addTo(map);
 
-    toggleRoads.addEventListener('click', () => {
-      if(map.hasLayer(roadsLayer)){
-         map.removeLayer(roadsLayer)
-       }
-     else {
-          roadsLayer.addTo(map)
-        }
-      })
-    
-        toggleBuildings.addEventListener('click', () => {
-      if(map.hasLayer(buildingsLayer)){
-         map.removeLayer(buildingsLayer)
-       }
-     else {
-          buildingsLayer.addTo(map)
-        }
-      })
+// Create the layer control
+var overlayMaps = {
+    "Layer 1": layer1,
+    "Layer 2": layer2,
+    "Layer 3": layer3
+};
 
-        toggleParks.addEventListener('click', () => {
-      if(map.hasLayer(parksLayer)){
-         map.removeLayer(parksLayer)
-       }
-     else {
-          parksLayer.addTo(map)
-        }
-      })
+// Add layer control to map
+L.control.layers(null, overlayMaps).addTo(map);
